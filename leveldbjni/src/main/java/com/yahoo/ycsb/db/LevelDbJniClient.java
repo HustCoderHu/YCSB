@@ -125,7 +125,7 @@ public class LevelDbJniClient extends DB {
    */
   @Override
   public Status insert(String table, String key,
-      HashMap<String, ByteIterator> values) {
+      Map<String, ByteIterator> values) {
     Map<String, String> stringValues = StringByteIterator
         .getStringMap(values);
     try {
@@ -158,7 +158,7 @@ public class LevelDbJniClient extends DB {
    */
   @Override
   public Status read(String table, String key, Set<String> fields,
-      HashMap<String, ByteIterator> result) {
+      Map<String, ByteIterator> result) {
     byte[] value = db.get(key.getBytes());
     if (value == null) {
       return Status.NOT_FOUND;
@@ -195,7 +195,7 @@ public class LevelDbJniClient extends DB {
    */
   @Override
   public Status update(String table, String key,
-      HashMap<String, ByteIterator> values) {
+      Map<String, ByteIterator> values) {
     byte[] existingBytes = db.get(key.getBytes());
     Map<String, String> existingValues;
     if (existingBytes != null) {
