@@ -42,7 +42,7 @@ public class LevelDbJniClient extends DB {
       // options.cacheSize(100 * 1048576); // 100MB cache
       options.createIfMissing(true);
       try {
-        db = factory.open(new File("/sdc1/leveldb_sdb_database"), options);
+        db = factory.open(new File("/tmp/leveldb_sdb_database"), options);
       } catch (IOException e) {
         System.out.println("Failed to open database");
         e.printStackTrace();
