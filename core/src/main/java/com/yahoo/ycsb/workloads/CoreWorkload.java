@@ -459,8 +459,15 @@ public class CoreWorkload extends Workload {
     } else {
       orderedinserts = true;
     }
+    StringBuilder sb = new StringBuilder("orderedinserts: ");
+    sb.append(orderedinserts? "true" : "false");
+    System.out.println(sb.toString());
 
     keysequence = new CounterGenerator(insertstart);
+    sb.setLength(0);
+    sb.append("insertstart: ");
+    sb.append(insertstart);
+    System.out.println(sb.toString());
     operationchooser = createOperationGenerator(p);
 
     transactioninsertkeysequence = new AcknowledgedCounterGenerator(recordcount);
