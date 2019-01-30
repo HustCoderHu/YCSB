@@ -37,6 +37,8 @@ scanproportion | SCAN_PROPORTION_PROPERTY | 扫描比例
 ### var
 - keysequence: key 的生成器
 
+---
+
 # RocksDBClient
 类 `RocksDBClient`  
 - rocksdb.dir: 数据库目录
