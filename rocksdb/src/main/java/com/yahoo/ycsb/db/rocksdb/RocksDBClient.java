@@ -364,7 +364,7 @@ public class RocksDBClient extends DB {
     l.lock();
     try {
       if(!COLUMN_FAMILIES.containsKey(name)) {
-        final ColumnFamilyOptions cfOptions = new ColumnFamilyOptions().optimizeLevelStyleCompaction();
+        final ColumnFamilyOptions cfOptions = new ColumnFamilyOptions().optimizeLevelStyleCompaction(64<<22); // for double V2
         final ColumnFamilyHandle cfHandle = rocksDb.createColumnFamily(
             new ColumnFamilyDescriptor(name.getBytes(UTF_8), cfOptions)
         );
