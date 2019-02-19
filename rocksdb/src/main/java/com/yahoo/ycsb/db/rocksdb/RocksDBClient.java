@@ -43,6 +43,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 public class RocksDBClient extends DB {
 
   static final String PROPERTY_ROCKSDB_DIR = "rocksdb.dir";
+  static final String PROPERTY_ROCKS_THREADS = "rocks.threads";
   private static final String COLUMN_FAMILY_NAMES_FILENAME = "CF_NAMES";
 
   private static final Logger LOGGER = LoggerFactory.getLogger(RocksDBClient.class);
@@ -100,7 +101,11 @@ public class RocksDBClient extends DB {
       cfDescriptors.add(cfDescriptor);
     }
 
-    final int rocksThreads = Runtime.getRuntime().availableProcessors() * 2;
+    int rocksThreads = Integer.parseInt(getProperties().getProperty(PROPERTY_ROCKS_THREADS, "1"));
+    if (rocksThreads == 0) {
+      rocksThreads = Runtime.getRuntime().availableProcessors() * 2;
+    }
+    System.out.println("rocksThreads: " + rocksThreads);
 
     if(cfDescriptors.isEmpty()) {
       final Options options = new Options()
